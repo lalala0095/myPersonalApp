@@ -1,0 +1,18 @@
+# my custom files
+venv
+testings.ipynb
+
+# Python files
+__pycache__/
+*.pyc
+*.pyo
+*.env
+
+# Docker files
+*.log
+*.pid
+docker-compose.override.yml
+
+# IDE/editor files
+.vscode/
+*.swp
