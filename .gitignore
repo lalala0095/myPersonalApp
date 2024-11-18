@@ -16,3 +16,6 @@ docker-compose.override.yml
 # IDE/editor files
 .vscode/
 *.swp
+
+# my confidential files
+config.py

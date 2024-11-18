@@ -1,0 +1,6 @@
+pymongo
+pandas
+flask
+flask_pymongo
+python-dotenv
+matplotlib
