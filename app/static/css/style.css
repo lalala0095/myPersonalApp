@@ -35,6 +35,22 @@ header {
     box-shadow: 0 0 8px rgba(102, 175, 233, 0.6); /* Blue glow */
 }
 
+/* Styling for readonly form controls */
+.form-control[readonly] {
+    background-color: #f8f9fa; /* Light background to indicate inactivity */
+    border-color: #e0e0e0; /* Lighter border to show it's inactive */
+    color: #6c757d; /* Grayed text */
+    cursor: not-allowed; /* Indicate it's not clickable */
+}
+
+/* Optional: custom class to target readonly specifically */
+.readonly {
+    background-color: #f8f9fa;
+    border-color: #e0e0e0;
+    color: #6c757d;
+    cursor: not-allowed;
+}
+
 /* Styles for Invalid Fields */
 .is-invalid {
     border-color: #e74a3b;

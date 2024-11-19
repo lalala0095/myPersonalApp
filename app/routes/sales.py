@@ -7,17 +7,21 @@ sales_blueprint = Blueprint('sales_blueprint', __name__)
 
 @sales_blueprint.route('/sales_records', methods=['GET', 'POST'])
 def sales():
+    sales_records = list(db.sales.find())
+    products = list(db.products.find())
     if request.method == 'POST':
         # Add a new sales record
         date_inserted = datetime.now()
+        product_id = request.form.get('product_id')
         product_name = request.form.get('product_name')
+        product_type = request.form.get('product_type')
         quantity = request.form.get('quantity')
         price = request.form.get('price')
-        product_type = request.form.get('product_type')
 
         if product_name and quantity and price:
             new_record = {
                 "date_inserted": date_inserted,
+                "product_id": product_id,
                 "product_name": product_name,
                 "quantity": int(quantity),
                 "product_type": product_type,
@@ -33,4 +37,4 @@ def sales():
 
     # Fetch all sales records from the database
     sales_records = list(db.sales.find())
-    return render_template('sales.html', sales_records=sales_records)
+    return render_template('sales.html', sales_records=sales_records, products=products)
