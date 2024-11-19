@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_pymongo import PyMongo
 from .config import SECRET_KEY, MONGO_URI
-from .routes import main
 
 mongo = None
 
@@ -14,8 +13,7 @@ def create_app():
     global mongo
     mongo = PyMongo(app)
 
+    from .routes.main import main
     app.register_blueprint(main)
-    from .routes import accounts
-    app.register_blueprint(accounts, url_prefix="/accounts")
 
     return app

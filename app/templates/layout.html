@@ -16,22 +16,22 @@
 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Account</a>
-                </li>
-              </ul>
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link {% if request.endpoint == 'sales_blueprint.sales' %}active{% endif %}" href="{{ url_for('sales_blueprint.sales') }}">Sales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'products_blueprint.products' %}active{% endif %}" href="{{ url_for('products_blueprint.products') }}">Products</a>
+                      </li>
+                    </ul>
+                </div>
             </div>
-          </nav>
+        </nav>
     </header>
 
     <main class="container.fluid">
@@ -45,6 +45,19 @@
         </div>
     </main>
   
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="container mt-3">
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
   <script>
       document.addEventListener('DOMContentLoaded', function () {
           var passwordField = document.querySelector('[name="password"]');

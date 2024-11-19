@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Sales Records</h1>
+
+    <!-- Table for displaying sales records -->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Type</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in sales_records %}
+            <tr>
+                <td>{{ record.product_name }}</td>
+                <td>{{ record.product_type }}</td>
+                <td>{{ record.quantity }}</td>
+                <td>${{ record.price }}</td>
+                <td>${{ record.total }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="text-center">No sales records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Form to add a new sales record -->
+    <h2 class="mt-5">Add New Sale</h2>
+    <form method="POST" action="{{ url_for('sales_blueprint.sales') }}">
+        <div class="mb-3">
+            <label for="product_name" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="product_name" name="product_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="product_type" class="form-label">Product Type</label>
+            <input type="text" class="form-control" id="product_type" name="product_type" required>
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" required>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" step="0.01" class="form-control" id="price" name="price" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Sale</button>
+    </form>
+</div>
+{% endblock %}
