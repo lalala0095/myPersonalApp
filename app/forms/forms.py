@@ -1,17 +1,18 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SelectField, SubmitField
-from wtforms.validators import DataRequired
-from werkzeug.security import generate_password_hash
+from wtforms import StringField, PasswordField, SubmitField, SelectField
+from wtforms.validators import DataRequired, Email, EqualTo
 
 class AccountForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired()])
-    hashed_password = TextAreaField("Password", validators=[DataRequired()])
-    name = StringField("Name", validators=[DataRequired()])
-    submit = SubmitField('Submit')
-
-    def hash_password(self):
-        """
-        Hash the password before saving it.
-        This method can be called when processing the form data.
-        """
-        return generate_password_hash(self.hashed_password.data)
+    password = PasswordField("Password", validators=[DataRequired()])
+    confirm_password = PasswordField("Confirm Password", validators=[
+        DataRequired(), EqualTo('password', message="Passwords must match.")
+    ])
+    name = StringField("Account Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    subscription = SelectField("Subscription Model", choices=[
+        ("free", "Free"),
+        ("basic", "Basic"),
+        ("premium", "Premium")
+    ])
+    submit = SubmitField("Submit")

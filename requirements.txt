@@ -4,3 +4,4 @@ flask
 flask_pymongo
 python-dotenv
 matplotlib
+email_validator
