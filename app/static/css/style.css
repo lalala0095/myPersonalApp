@@ -1,12 +1,35 @@
 /* General Styles */
-body {
+body, html {
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    width: 100%; /* Stretch body and html to full width */
+    height: 100%; /* Stretch body and html to full height */
     font-family: 'Arial', sans-serif;
     background-color: #f8f9fa; /* Light background for the whole page */
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
 }
 
+.container {
+    max-width: 2000px;
+    /* width: 100%; Ensure the main container spans full width */
+    margin: 0; /* Remove default margin */
+    padding: 0 15px;
+    /* text-align: left;
+    align-self: left; */
+}
+
+/* Header should span full width */
 header {
+    width: 100%;
     background-color: #343a40; /* Dark header */
     color: #fff;
+    padding: 10px 0; /* Add some padding for content spacing */
+}
+
+/* Navbar Styles */
+.navbar {
+    margin: 0 auto;
+    width: 100%; /* Stretch navbar to full width */
 }
 
 .navbar-brand, .nav-link {
@@ -15,6 +38,24 @@ header {
 
 .navbar-toggler-icon {
     background-color: #fff;
+}
+
+/* Content Section Styles */
+main {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box; /* Ensure padding doesn't add to total width */
+}
+
+/* Footer should also span full width */
+footer {
+    width: 100%;
+    background-color: #343a40;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed; /* Keep footer at the bottom */
+    bottom: 0;
 }
 
 /* Form Styles */
@@ -102,10 +143,10 @@ header {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .col-md-8 {
+    /* .col-md-8 {
         padding-left: 0;
         padding-right: 0;
-    }
+    } */
 
     .form-group {
         margin-bottom: 1.5rem;
@@ -130,3 +171,14 @@ button {
     font-weight: bold;
 }
 
+/* Custom styles for the .col-md-6 container */
+.col-md-6 {
+    /* Example of customizing width, padding, and other styles */
+    padding: 20px;  /* Adjust padding as needed */
+    background-color: #f8f9fa;  /* Set a background color */
+    border-radius: 8px;  /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Add a subtle shadow */
+    margin-bottom: 20px;  /* Add some spacing between rows */
+    margin-left: 0;
+    text-align: left;
+}

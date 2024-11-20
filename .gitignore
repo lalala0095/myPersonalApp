@@ -1,21 +1,27 @@
 # my custom files
 venv
 testings.ipynb
+app/templates/sales_add copy.html
+app/templates/sales_edit copy.html
 
-# Python files
-__pycache__/
+
+# Ignore .env file containing sensitive data
+.env
+
+# Python-related files
 *.pyc
 *.pyo
-*.env
+*.pyd
+__pycache__/
 
-# Docker files
-*.log
-*.pid
-docker-compose.override.yml
+# Virtual environment directories
+venv/
+env/
 
-# IDE/editor files
+# IDEs and editor settings
 .vscode/
-*.swp
+.idea/
 
-# my confidential files
-config.py
+# Docker-related
+Dockerfile*
+.dockerignore

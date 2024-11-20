@@ -1,12 +1,13 @@
-from flask import render_template, request, redirect, url_for, flash, Blueprint
+from flask import render_template, request, redirect, url_for, flash, Blueprint, current_app
 from pymongo import MongoClient
-from app.config import db
+from app.config import Config
 from datetime import datetime
 
 products_blueprint = Blueprint('products_blueprint', __name__)
 
 @products_blueprint.route('/products_records', methods=['GET', 'POST'])
 def products():
+    db = current_app.db
     if request.method == 'POST':
         # Add a new products record
         date_inserted = datetime.now()

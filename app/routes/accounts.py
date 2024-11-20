@@ -1,14 +1,15 @@
-from flask import Blueprint, render_template, redirect, url_for, flash
+from flask import Blueprint, render_template, redirect, url_for, flash, current_app
 from app.forms.forms import AccountForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.config import db
 from flask_pymongo import MongoClient
-from app.config import SECRET_KEY
+from app.config import Config
 
 accounts = Blueprint('accounts', __name__)
 
 @accounts.route('/signup', methods=['GET', 'POST'])
 def signup():
+    db = current_app.db
+
     form = AccountForm()
     if form.validate_on_submit():
         # Check if the username or email already exists
@@ -35,8 +36,6 @@ def signup():
     return render_template('add_account.html', form=form)
 
 
-accounts.secret_key = SECRET_KEY
-
 @accounts.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -50,7 +49,7 @@ def login():
             # Check if the provided password matches the hashed password in the database
             if check_password_hash(user['password'], password):
                 flash("Login successful!", "success")
-                return redirect(url_for('dashboard'))
+                return redirect(url_for('main.dashboard'))
             else:
                 flash("Invalid password. Please try again.", "danger")
         else:

@@ -13,14 +13,14 @@
     {% endif %}
 </head>
 <body>
-
+<!-- 
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarNav">
                   <ul class="navbar-nav">
                     <li class="nav-item">
-                      <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">Home</a>
+                      <a class="nav-link {% if request.endpoint == 'main.dashboard' %}active{% endif %}" href="{{ url_for('main.dashboard') }}">Home</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link {% if request.endpoint == 'sales_blueprint.sales' %}active{% endif %}" href="{{ url_for('sales_blueprint.sales') }}">Sales</a>
@@ -28,6 +28,72 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.endpoint == 'products_blueprint.products' %}active{% endif %}" href="{{ url_for('products_blueprint.products') }}">Products</a>
                       </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header> -->
+<!-- 
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.endpoint == 'main.dashboard' %}active{% endif %}" href="{{ url_for('main.dashboard') }}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {% if 'sales_blueprint' in request.endpoint %}active{% endif %}" 
+                               href="#" id="salesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Sales
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="salesDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('sales_blueprint.sales') }}">View Sales</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('sales_blueprint.sales_add') }}">Add Sale</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.endpoint == 'products_blueprint.products' %}active{% endif %}" href="{{ url_for('products_blueprint.products') }}">Products</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header> -->
+    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Adv POS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.endpoint == 'main.dashboard' %}active{% endif %}" href="{{ url_for('main.dashboard') }}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {% if 'sales_blueprint' in request.endpoint %}active{% endif %}" 
+                               href="#" id="salesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Sales
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="salesDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('sales_blueprint.sales') }}">View Sales</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ url_for('sales_blueprint.sales_add') }}">Add Sale</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.endpoint == 'products_blueprint.products' %}active{% endif %}" href="{{ url_for('products_blueprint.products') }}">Products</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -55,6 +121,16 @@
             </div>
         {% endfor %}
         </div>
+        <script>
+            // Hide flash message after 3 seconds
+            setTimeout(function() {
+              var flashMessages = document.querySelectorAll('.alert');
+              flashMessages.forEach(function(message) {
+                message.classList.remove('show');  // Remove the show class to fade out
+                message.classList.add('fade');  // Add fade class to ensure it fades away
+              });
+            }, 3000);  // 3000ms = 3 seconds
+          </script>
     {% endif %}
     {% endwith %}
 
