@@ -3,26 +3,26 @@ from datetime import datetime
 from bson.objectid import ObjectId
 from app.routes.login_required import login_required
 
-products_blueprint = Blueprint('products_blueprint', __name__)
+cogs_blueprint = Blueprint('cogs_blueprint', __name__)
 
-@products_blueprint.route('/products_records', methods=['GET', 'POST'])
+@cogs_blueprint.route('/cogs_records', methods=['GET', 'POST'])
 @login_required
-def products():
+def cogs():
     db = current_app.db
    
-    # Fetch all products records from the database
-    products_records = list(db.products.find())
-    return render_template('products.html', products_records=products_records)
+    # Fetch all cogs records from the database
+    cogs_records = list(db.cogs.find())
+    return render_template('cogs.html', cogs_records=cogs_records)
 
 
-@products_blueprint.route('/products_add', methods=['GET', 'POST'])
+@cogs_blueprint.route('/cogs_add', methods=['GET', 'POST'])
 @login_required
-def products_add():
+def cogs_add():
     db = current_app.db
     if request.method == 'POST':
-        # Add a new products record
+        # Add a new cogs record
         date_inserted = datetime.now()
-        count_of_product_existing = str(db['products'].count_documents({}))
+        count_of_product_existing = str(db['cogs'].count_documents({}))
         product_id = count_of_product_existing.zfill(6)
         product_name = request.form.get('product_name')
         price = request.form.get('price')
@@ -36,41 +36,43 @@ def products_add():
                 "product_type": product_type,
                 "price": float(price),
             }
-            db.products.insert_one(new_record)
-            flash("Product record added successfully!", "success")
+            db.cogs.insert_one(new_record)
+            print("successfully added product")
+            flash("Cost of Goods record added successfully!", "success")
         else:
             flash("All fields are required!", "danger")
+            print("failed to add product")
 
-        return redirect(url_for('products_blueprint.products_add'))
+        return redirect(url_for('cogs_blueprint.cogs_add'))
 
-    # Fetch all products records from the database
-    products_records = list(db.products.find())
-    return render_template('products_add.html', products_records=products_records)
+    # Fetch all cogs records from the database
+    cogs_records = list(db.cogs.find())
+    return render_template('cogs_add.html', cogs_records=cogs_records)
 
 
 
-# Route to delete a products record
-@products_blueprint.route('/products_delete/<string:record_id>', methods=['POST'])
+# Route to delete a cogs record
+@cogs_blueprint.route('/cogs_delete/<string:record_id>', methods=['POST'])
 @login_required
-def products_delete(record_id):
+def cogs_delete(record_id):
     db = current_app.db
     try:
-        db.products.delete_one({"_id": ObjectId(record_id)})
-        flash("products record deleted successfully!", "success")
+        db.cogs.delete_one({"_id": ObjectId(record_id)})
+        flash("cogs record deleted successfully!", "success")
     except Exception as e:
         flash(f"Error deleting record: {e}", "danger")
-    return redirect(url_for('products_blueprint.products'))
+    return redirect(url_for('cogs_blueprint.cogs'))
 
-@products_blueprint.route('/products_edit/<string:record_id>', methods=['GET', 'POST'])
+@cogs_blueprint.route('/cogs_edit/<string:record_id>', methods=['GET', 'POST'])
 @login_required
-def products_edit(record_id):
+def cogs_edit(record_id):
     db = current_app.db
-    record = db.products.find_one({"_id": ObjectId(record_id)})
-    products = list(db.products.find())
+    record = db.cogs.find_one({"_id": ObjectId(record_id)})
+    cogs = list(db.cogs.find())
 
     if not record:
-        flash("products record not found!", "danger")
-        return redirect(url_for('products_blueprint.products'))
+        flash("cogs record not found!", "danger")
+        return redirect(url_for('cogs_blueprint.cogs'))
 
     if request.method == 'POST':
         date_inserted = request.form.get('date_inserted')
@@ -90,12 +92,12 @@ def products_edit(record_id):
                 "date_updated": date_updated
             }
             try:
-                db.products.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
-                flash("products record updated successfully!", "success")
+                db.cogs.update_one({"_id": ObjectId(record_id)}, {"$set": updated_record})
+                flash("cogs record updated successfully!", "success")
             except Exception as e:
                 flash(f"Error updating record: {e}", "danger")
-            return redirect(url_for('products_blueprint.products'))
+            return redirect(url_for('cogs_blueprint.cogs'))
 
         flash("All fields are required!", "danger")
 
-    return render_template('products_edit.html', record=record, products=products)
+    return render_template('cogs_edit.html', record=record, cogs=cogs)

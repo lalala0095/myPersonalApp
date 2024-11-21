@@ -25,3 +25,5 @@ env/
 # Docker-related
 Dockerfile*
 .dockerignore
+
+paymongo

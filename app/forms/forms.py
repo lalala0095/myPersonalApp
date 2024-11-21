@@ -30,3 +30,18 @@ class LoginForm(FlaskForm):
         validators=[DataRequired(message="Password is required")]
     )
     submit = SubmitField('Login')
+
+
+class UserForm(FlaskForm):
+    username = StringField("Username", validators=[DataRequired()])
+    password = PasswordField("Password", validators=[DataRequired()])
+    confirm_password = PasswordField("Confirm Password", validators=[
+        DataRequired(), EqualTo('password', message="Passwords must match.")
+    ])
+    name = StringField("Full Name", validators=[DataRequired()])
+    email = StringField("Email", validators=[Email()])
+    is_admin = SelectField("Admin Privileges", choices=[
+        ("True", "Yes"),
+        ("False", "No")
+    ])
+    submit = SubmitField("Submit")

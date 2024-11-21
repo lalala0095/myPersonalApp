@@ -1,4 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Welcome to the Dashboard</h1>
+    <div class="container-dashboard">
+        <div class="container-sales">
+            <div class="card">
+                <a href=" {{ url_for('sales_blueprint.sales') }} ", class="card-link">
+                    <h3>Total Sales</h3>
+                    <p>${{ total_sales }}</p>    
+                </a>
+            </div>
+        </div>
+        <div class="container-products">
+            <div class="card">
+                <a href=" {{ url_for('products_blueprint.products') }} ", class="card-link">
+                    <h3>Total Products</h3>
+                    <p>{{ total_products }}</p>
+                </a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
