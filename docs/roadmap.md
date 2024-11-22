@@ -15,13 +15,13 @@ Focus: CRUD operations and core functionalities for accounts, staff, inventory, 
  - [x] Set up the directory structure.
  - [x] Initialize a GitHub repository.
  - [x] Configure .gitignore for sensitive files.
- - [ ] Set up a Docker environment for development and deployment.
- - [ ] Connect the project to Azure for hosting.
+ - [x] Set up a Docker environment for development and deployment.
+ - [x] Connect the project to Azure for hosting.
 ### 1.2. Authentication and Authorization (Week 3-4)
- - [ ] Create login/logout functionality for users.
+ - [x] Create login/logout functionality for accounts and users.
  - [ ] Implement role-based access control (Admin, Staff).
  - [ ] Secure routes with authentication.
- - [ ] Build a basic frontend for user authentication (e.g., login form).
+ - [x] Build a basic frontend for user authentication (e.g., login form).
 ### 1.3. CRUD for Accounts and Staff Management (Week 5-6)
  - [ ] Create backend APIs for user and staff management.
     - Add, update, delete, and list users and staff.

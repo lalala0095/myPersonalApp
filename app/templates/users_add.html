@@ -22,13 +22,10 @@
                     <tr>
                         <td>{{ record.account_id }}</td>
                         <td>{{ record.user_id }}</td>
-                        <td>{{ record.user_name }}</td>
+                        <td>{{ record.username }}</td>
                         <td>{{ record.name }}</td>
                         <td>{{ record.email }}</td>
-                        <td>{{ if record.is_admin == True:
-                            "Yes"
-                        else:
-                    False }}</td>
+                        <td>{{ "Yes" if record.is_admin else "No"}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -40,7 +37,7 @@
             <form method="POST" action="{{ url_for('users_blueprint.users_add') }}">
                 {{ form.hidden_tag() }}
                 <div class="mb-3">
-                    <label for="user_name" class="form-label">Username</label>
+                    <label for="username" class="form-label">Username</label>
                     <input type="text" class="form-control" id="username" name="username" required>
                 </div>
                 <div class="mb-3">

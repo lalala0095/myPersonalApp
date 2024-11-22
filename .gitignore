@@ -3,7 +3,8 @@ venv
 testings.ipynb
 app/templates/sales_add copy.html
 app/templates/sales_edit copy.html
-
+app/templates/users_edit copy.html
+app/routes/main copy.py
 
 # Ignore .env file containing sensitive data
 .env

@@ -17,6 +17,7 @@
                 <th>Full Name</th>
                 <th>Email</th>
                 <th>Admin Privileges</th>
+                <th>Options</th>
             </tr>
         </thead>
         <tbody>
@@ -25,9 +26,10 @@
                 <td>{{ record.date_inserted }}</td>
                 <td>{{ record.user_id }}</td>
                 <td>{{ record.account_id }}</td>
-                <td>{{ record.user_name }}</td>
-                <td>{{ record.user_type }}</td>
-                <td>${{ record.price }}</td>
+                <td>{{ record.username }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.email }}</td>
+                <td>{{ record.is_admin }}</td>
                 <td>
                     <!-- Edit Icon -->
                     <a href="{{ url_for('users_blueprint.users_edit', record_id=record._id) }}" class="btn btn-warning btn-sm">
@@ -45,7 +47,7 @@
             </tr>
             {% else %}
             <tr>
-                <td colspan="5" class="text-center">No users records found.</td>
+                <td colspan="8" class="text-center">No users records found.</td>
             </tr>
             {% endfor %}
         </tbody>

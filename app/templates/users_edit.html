@@ -2,42 +2,107 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2>Edit Products Record</h2>
+    <div class="row">
+        <div class="col-md-6 users-records">
+            <h5>Users Records</h5>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Account ID</th>
+                        <th>User ID</th>
+                        <th>Username</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Admin Privileges</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ record.account_id }}</td>
+                        <td>{{ record.user_id }}</td>
+                        <td>{{ record.username }}</td>
+                        <td>{{ record.name }}</td>
+                        <td>{{ record.email }}</td>
+                        <td>{{ "Yes" if record.is_admin else "No" }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-    <form method="POST" action="{{ url_for('products_blueprint.products_edit', record_id=record._id) }}">
-        <input type="hidden" id="product_id" name="product_id" value="{{ record.product_id }}">
-        <div class="mb-3">
-            <label for="product_name" class="form-label">Product Name</label>
-            <input type="text" class="form-control" id="product_name" name="product_name" required>
+        <div class="col-md-6 add-new-user">
+            <h5>Edit User Record</h5>
+            <form method="POST" action="{{ url_for('users_blueprint.users_edit', record_id=record._id) }}">
+                {{ form.hidden_tag() }}
+                <input type="hidden" name="user_id" value="{{ record.user_id }}">
+                <input type="hidden" name="account_id" value="{{ record.account_id }}">
+
+                <!-- Username Field (Readonly) -->
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" value="{{ record.username }}" readonly>
+                    {% if form.username.errors %}
+                        <span class="text-danger">{{ form.username.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <!-- Full Name Field -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="name" name="name" value="{{ record.name }}" required>
+                    {% if form.name.errors %}
+                        <span class="text-danger">{{ form.name.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <!-- Email Field -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ record.email }}" required>
+                    {% if form.email.errors %}
+                        <span class="text-danger">{{ form.email.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="is_admin" class="form-label">Admin Privileges</label>
+                    <select class="form-control" id="is_admin" name="is_admin" required>
+                        <option value="True" is-admin-id="1">True</option>
+                        <option value="False" is-admin-id="2">False</option>
+                    </select>
+                </div> 
+
+                <!-- Password Field (Optional) -->
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password (Leave empty to keep existing)</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="mb-3">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+                    {% if form.password.errors %}
+                        <span class="text-danger">{{ form.password.errors[0] }}</span>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a href="{{ url_for('users_blueprint.users') }}" class="btn btn-secondary">Cancel</a>
+            </form>
         </div>
-        <div class="mb-3">
-            <label for="product_name" class="form-label">Product Type</label>
-            <input type="text" class="form-control" id="product_name" name="product_name">
-        </div>
-        <div class="mb-3">
-            <label for="price" class="form-label">Price</label>
-            <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ record.price }}" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-        <a href="{{ url_for('products_blueprint.products') }}" class="btn btn-secondary">Cancel</a>
-    </form>
+    </div>
 </div>
 
 <script>
-    // Function to update product details when a product is selected
-    function updateProductDetails() {
-        var productSelect = document.getElementById('product_id');
-        var selectedProduct = productSelect.options[productSelect.selectedIndex];
-        var productName = selectedProduct.getAttribute('data-product-name');
-        var productType = selectedProduct.getAttribute('data-product-type');
-        var productId = selectedProduct.getAttribute('data-product-id');
-        var productPrice = selectedProduct.getAttribute('data-price');
-
-        // Set the values in the form fields
-        document.getElementById('product_id').value = productId;
-        document.getElementById('product_name').value = productName;
-        document.getElementById('product_type').value = productType;
-        document.getElementById('price').value = productPrice;
-    }
+    // Password confirmation validation
+    document.querySelector('form').addEventListener('submit', function (e) {
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirm_password').value;
+        
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            e.preventDefault(); // Prevent form submission
+        }
+    });
 </script>
 {% endblock %}
