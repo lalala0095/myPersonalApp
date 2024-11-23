@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h5>Records Records</h5>
+
+    <table class="table table-bordered" style="display: block;">
+
+    <!-- Table for displaying cards records -->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Card ID</th>
+                <th>Card Name</th>
+                <th>Card Type</th>
+                <th>Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for card in cards_records %}
+            <tr>
+                <td>{{ card.card_id }}</td>
+                <td>{{ card.card_name }}</td>
+                <td>{{ card.card_type }}</td>
+                <td>
+                    <!-- Edit Icon -->
+                    <a href="{{ url_for('cards_blueprint.cards_edit', card_id=card._id) }}" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i>
+                        Edit
+                    </a>
+                    <!-- Delete Icon -->
+                    <form action="{{ url_for('cards_blueprint.cards_delete', card_id=card._id) }}" method="POST" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this card?');">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="7" class="text-center">No card records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ url_for('cards_blueprint.cards_add') }}" class="btn btn-primary">Add Card</a>
+</div>
+{% endblock %}

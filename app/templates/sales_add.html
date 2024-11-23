@@ -10,8 +10,8 @@
                 <thead>
                     <tr>
                         <th>Date of Sale</th>
-                        <th>Product Name</th>
-                        <th>Product Type</th>
+                        <th>Record Name</th>
+                        <th>Record Type</th>
                         <th>Quantity</th>
                         <th>Price</th>
                         <th>Total</th>                       
@@ -21,8 +21,8 @@
                     {% for record in sales %}
                     <tr>
                         <td>{{ record.date_of_sale }}</td>
-                        <td>{{ record.product_name }}</td>
-                        <td>{{ record.product_type }}</td>
+                        <td>{{ record.record_name }}</td>
+                        <td>{{ record.record_type }}</td>
                         <td>{{ record.quantity }}</td>
                         <td>{{ record.price }}</td>
                         <td>{{ record.total }}</td>                        
@@ -41,20 +41,20 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="product_label" class="form-label">Product</label>
-                    <select class="form-control" id="product_label" name="product_label" required onchange="updateProductDetails()">
-                        {% for product in products %}
-                            <option value="{{ product.product_name }}|{{ product.product_type }}" 
-                                data-price="{{ product.price }}" data-product-id="{{ product.product_id }}">
-                                {{ product.product_name }} - {{ product.product_type }}
+                    <label for="record_label" class="form-label">Record</label>
+                    <select class="form-control" id="record_label" name="record_label" required onchange="updateRecordDetails()">
+                        {% for record in records %}
+                            <option value="{{ record.record_name }}|{{ record.record_type }}" 
+                                data-price="{{ record.price }}" data-record-id="{{ record.record_id }}">
+                                {{ record.record_name }} - {{ record.record_type }}
                             </option>
                         {% endfor %}
                     </select>
                 </div>
 
-                <input type="hidden" id="product_id" name="product_id">
-                <input type="hidden" id="product_name" name="product_name">
-                <input type="hidden" id="product_type" name="product_type">
+                <input type="hidden" id="record_id" name="record_id">
+                <input type="hidden" id="record_name" name="record_name">
+                <input type="hidden" id="record_type" name="record_type">
 
                 <div class="mb-3">
                     <label for="quantity" class="form-label">Quantity</label>
@@ -79,28 +79,28 @@
 </div>
 
 <script>
-    updateProductDetails()
-    // Function to update product details when a product is selected
-    function updateProductDetails() {
-        var productSelect = document.getElementById('product_label');
-        var selectedProduct = productSelect.options[productSelect.selectedIndex];
-        var productName = selectedProduct.value.split('|')[0];
-        var productType = selectedProduct.value.split('|')[1];
-        var productId = selectedProduct.getAttribute('data-product-id');
-        var productPrice = selectedProduct.getAttribute('data-price');
+    updateRecordDetails()
+    // Function to update record details when a record is selected
+    function updateRecordDetails() {
+        var recordSelect = document.getElementById('record_label');
+        var selectedRecord = recordSelect.options[recordSelect.selectedIndex];
+        var recordName = selectedRecord.value.split('|')[0];
+        var recordType = selectedRecord.value.split('|')[1];
+        var recordId = selectedRecord.getAttribute('data-record-id');
+        var recordPrice = selectedRecord.getAttribute('data-price');
 
         // Set the values in the form fields
-        document.getElementById('product_id').value = productId;
-        document.getElementById('product_name').value = productName;
-        document.getElementById('product_type').value = productType;
-        document.getElementById('price').value = productPrice;
+        document.getElementById('record_id').value = recordId;
+        document.getElementById('record_name').value = recordName;
+        document.getElementById('record_type').value = recordType;
+        document.getElementById('price').value = recordPrice;
 
         // Reset quantity and total fields
         // document.getElementById('quantity').value = '';
         // document.getElementById('total').value = '';
         calculateTotal()
     }
-    // Function to calculate total price based on quantity and product price
+    // Function to calculate total price based on quantity and record price
     function calculateTotal() {
         var quantity = parseFloat(document.getElementById('quantity').value);
         var price = parseFloat(document.getElementById('price').value);

@@ -20,14 +20,11 @@ def authenticate_user(username, password, db):
 @login_required
 def index():
     db = current_app.db
-    total_sales = db.sales.aggregate([{'$group': {'_id': None, 'total': {'$sum': '$total'}}}]).next().get('total', 0)
-    total_products = db.products.count_documents({})
+    # total_sales = db.sales.aggregate([{'$group': {'_id': None, 'total': {'$sum': '$total'}}}]).next().get('total', 0)
+    total_sales = None
+    total_cards = db.cards.count_documents({})
 
-    return render_template("dashboard.html", title="Dashboard", total_sales=total_sales, total_products=total_products)
-
-# @main.route("/dashboard")
-# def dashboard():
-#     return render_template("dashboard.html")
+    return render_template("dashboard.html", title="Dashboard", cards_blueprint={"cards": True}, total_cards=total_cards)
 
 @main.route('/login', methods=['GET', 'POST'])
 def login():

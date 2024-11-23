@@ -9,8 +9,8 @@
             <thead>
                 <tr>
                     <th>Date of Sale</th>
-                    <th>Product Name</th>
-                    <th>Product Type</th>
+                    <th>Record Name</th>
+                    <th>Record Type</th>
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Total</th>
@@ -21,8 +21,8 @@
                 {% for record in sales_records %}
                 <tr>
                     <td>{{ record.date_of_sale }}</td>
-                    <td>{{ record.product_name }}</td>
-                    <td>{{ record.product_type }}</td>
+                    <td>{{ record.record_name }}</td>
+                    <td>{{ record.record_type }}</td>
                     <td>{{ record.quantity }}</td>
                     <td>${{ record.price }}</td>
                     <td>${{ record.total }}</td>

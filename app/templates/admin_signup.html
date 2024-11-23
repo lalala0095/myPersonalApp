@@ -2,7 +2,7 @@
 {% block content %}
     <div>
         <form action="" method="POST">
-            {{ form.csrf_token() }}
+            {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend>
                     Sign Up an Admin Account

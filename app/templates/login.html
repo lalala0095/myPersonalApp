@@ -3,7 +3,7 @@
 {% block content %}
     <div class="mt-5">
         <form action="{{ url_for('main.login') }}" method="POST">
-            {{ form.csrf_token() }}
+            {{ form.hidden_tag() }}
             <fieldset class="form-group">
                 <legend>Login User or Admin</legend>
 

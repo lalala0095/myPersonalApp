@@ -28,3 +28,7 @@ Dockerfile*
 .dockerignore
 
 paymongo
+*copy*
+
+app/templates/*copy*
+app/routes/*copy*
