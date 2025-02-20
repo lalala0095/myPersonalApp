@@ -1,0 +1,43 @@
+[
+    {
+        "_id": "677a7f3195054f0d9787fd23",
+        "title": "AdvPOS App FastAPI Version",
+        "description": "An ongoing project that aims to provide a functional web app to analyze user's Cash Flows, Expenses with user authentication.",
+        "tech": [
+            "React",
+            "FastAPI",
+            "MongoDB",
+            "AWS EC2",
+            "Redis"
+        ],
+        "frontend_github_link": "https://github.com/lalala0095/advposreact/tree/react",
+        "backend_github_link": "https://github.com/lalala0095/advposreact/tree/master",
+        "url": "https://advposapp.com/"
+    },
+    {
+        "_id": "677a7f3195054f0d9787fd24",
+        "title": "AdvPOS App Flask Version",
+        "description": "This is the first version of the AdvPOS App FastAPI Version. This has more data entries like Orders, Products, Finance Planning and Feedbacks.",
+        "tech": [
+            "HTML/CSS",
+            "Flask",
+            "MongoDB",
+            "Azure Web Apps"
+        ],
+        "fullstack_github_link": "https://github.com/lalala0095/expensechatbotazure",
+        "url": "https://advpos-hxa6adhwfwdbd2d9.southeastasia-01.azurewebsites.net"
+    },
+    {
+        "_id": "677a7f3195054f0d9787fd25",
+        "title": "Expense Chat Bot App",
+        "description": "This is my the first project I did to study Python web development. This web app aims to have a chat bot version of an Expense tracker.",
+        "tech": [
+            "HTML/CSS",
+            "Flask",
+            "Google Sheets",
+            "Azure Web Apps"
+        ],
+        "fullstack_github_link": "https://github.com/lalala0095/expensechatbotazure",
+        "url": "https://expensechatbotcontainer-b7eka5fkg8aqc2hp.southeastasia-01.azurewebsites.net/"
+    }
+]

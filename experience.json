@@ -1,0 +1,30 @@
+[
+    {
+        "_id": "677a845f693d98f43cd6046d",
+        "company": "Christina James Team",
+        "description": "Developed and maintained an AppSheet web app for Real Estate CRM + Reporting platform.",
+        "duration": "May 2023 - Dec 2024",
+        "position": "Data Analyst/AppSheet Developer"
+    },
+    {
+        "_id": "677a845f693d98f43cd6046e",
+        "company": "Cloudstaff",
+        "description": "Assist Real Estate company of Power BI Reports, Python ETL development to NoSQL and SQL databases.",
+        "duration": "Aug 2024 - Present",
+        "position": "Data Analyst and Engineer"
+    },
+    {
+        "_id": "677a845f693d98f43cd6046f",
+        "company": "TaskUs",
+        "description": "Assist Operations department on implementing and ingesting new KPIs to Redshift database. Daily support of Campaigns\u2019 reports in Power BI, Google Looker studio with ad hoc reports in Excel and Google Sheets.",
+        "duration": "Aug 2022 - Aug 2024",
+        "position": "Data Visualization Analyst"
+    },
+    {
+        "_id": "677a8460693d98f43cd60470",
+        "company": "Manila Electric Company (Meralco)",
+        "description": "Maintain accuracy of meter data from the database versus the field data. Supervise digitizers\u2019 concerns regarding data correction.",
+        "duration": "Nov 2020 - Aug 2022",
+        "position": "Project Based Data Analyst"
+    }
+]
