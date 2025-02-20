@@ -1,2 +1,5 @@
 .env
 venv
+my-hwko-project-3a9e49443929.json
+*.json
+__pycache__
